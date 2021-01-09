@@ -5,34 +5,34 @@ version: '3'
 services:
     course-catalog:
     
-    build: ./course_catalog
-    container_name: course-catalog
+        build: ./course_catalog
+        container_name: course-catalog
 
-    ports:
-      - 8761:8761 # Forward the exposed port 8080 on the container to port 8080 on the host machine
+        ports:
+          - 8761:8761 # Forward the exposed port 8080 on the container to port 8080 on the host machine
 
 
 
 services:
     student-details:
     
-    build: ./student_details
-    container_name: student-details
+        build: ./student_details
+        container_name: student-details
 
-    ports:
-      - 8080:8081 # Forward the exposed port 8080 on the container to port 8080 on the host machine
-    links:
-      - course-catalog   
+        ports:
+          - 8080:8081 # Forward the exposed port 8080 on the container to port 8080 on the host machine
+        links:
+          - course-catalog   
     
     
 services:
     course-registration:
     
-    build: ./course_registration
-    container_name: course-registration
+        build: ./course_registration
+        container_name: course-registration
 
-    ports:
-      - 8080:8082 # Forward the exposed port 8080 on the container to port 8080 on the host machine
-     
-    links:
-      - course-catalog   
+        ports:
+          - 8080:8082 # Forward the exposed port 8080 on the container to port 8080 on the host machine
+         
+        links:
+          - course-catalog   
