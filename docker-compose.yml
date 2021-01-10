@@ -4,22 +4,25 @@ version: '3'
 
 services:
     course-catalog:    
-        build: ./course_catalog
+        build: 
+            context: ./course_catalog
+            dockerfile: Dockerfile
         container_name: course-catalog
         ports:
           - 8761:8761 # Forward the exposed port 8761 on the container to port 8761 on the host machine
-    student-details:
-        build: ./student_details
-        container_name: student-details
-        ports:
-          - 8080:8081 # Forward the exposed port 8080 on the container to port 8081 on the host machine
-        depends_on:
-          - course-catalog 
     course-registration:    
-        build: ./course_registration
-        container_name: course-registration
-        ports:
-          - 8080:8082 # Forward the exposed port 8080 on the container to port 8082 on the host machine         
+        build: 
+            context: ./course_registration
+            dockerfile: Dockerfile
+        container_name: course-registration     
         depends_on:
           - course-catalog
+    student-details:
+        build:
+            context: ./student_details
+            dockerfile: Dockerfile
+        container_name: student-details
+        depends_on:
+          - course-catalog 
+
  
