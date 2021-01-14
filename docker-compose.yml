@@ -17,6 +17,8 @@ services:
         container_name: course-registration     
         depends_on:
           - course-catalog
+        links:
+          - course-catalog
     student-details:
         build:
             context: ./student_details
@@ -24,5 +26,7 @@ services:
         container_name: student-details
         depends_on:
           - course-catalog 
+        links:
+          - course-catalog
 
  
